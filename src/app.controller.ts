@@ -15,6 +15,6 @@ export class AppController {
   @Roles(UserRole.ADMIN)
   @Get('admin-ping')
   adminPing() {
-    return {ok: true};
+    return { ok: true };
   }
 }

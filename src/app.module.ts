@@ -18,6 +18,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { RolesGuard } from './common/guards/roles.guard';
         username: config.get('DB_USER'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        autoLoadEntities: true,
+        entities: [join(__dirname, '**', '*.entity{.ts,.js}')],
         synchronize: false,
       }),
     }),
@@ -48,6 +49,7 @@ import { RolesGuard } from './common/guards/roles.guard';
     CitiesModule,
     StopsModule,
     AuthModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [
